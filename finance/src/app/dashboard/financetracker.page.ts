@@ -25,6 +25,7 @@ import {
 
 @Component({
   selector: 'app-financetracker',
+  standalone: true,
   templateUrl: './financetracker.page.html',
   styleUrls: ['./financetracker.page.scss'],
   imports: [IonIcon, 
