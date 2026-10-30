@@ -119,17 +119,28 @@ export class LoginPage {
         this.openFeedback('Login failed', this.errorMessage);
         return;
       }
+      const resourcesResponse = await fetch(
+        `http://127.0.0.1:8000/resources/${data.user.user_id}`,
+      );
+      const resources = await resourcesResponse.json();
+
+      if (!resourcesResponse.ok) {
+        throw new Error(
+          resources.detail || `Could not load user resources (${resourcesResponse.status}).`,
+        );
+      }
 
       localStorage.setItem('finance-user', JSON.stringify(data.user));
-      
+      localStorage.setItem('finance-resources', JSON.stringify(resources));
       this.errorMessage = '';
 
       //redirection
-      await this.router.navigateByUrl('/home', { replaceUrl: true });
+      await this.router.navigateByUrl('/finance/dashboard', { replaceUrl: true });
 
     } catch (error) {
       console.error('Login error:', error);
-      this.errorMessage = 'Cannot connect to the backend';
+      this.errorMessage =
+        error instanceof Error ? error.message : 'Cannot connect to the backend';
       this.openFeedback('Connection error', this.errorMessage);
     } finally {
       this.isSubmitting = false;
