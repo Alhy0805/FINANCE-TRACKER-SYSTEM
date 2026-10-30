@@ -1,0 +1,144 @@
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
+import {
+  IonButton,
+  IonAlert,
+  IonCard,
+  IonCardContent,
+  IonCardHeader,
+  IonCheckbox,
+  IonCol,
+  IonContent,
+  IonGrid,
+  IonIcon,
+  IonInput,
+  IonItem,
+  IonLabel,
+  IonList,
+  IonNote,
+  IonRow,
+  IonText,
+} from '@ionic/angular';
+
+@Component({
+  selector: 'app-login',
+  templateUrl: './login.page.html',
+  styleUrls: ['./login.page.scss'],
+  imports: [
+    IonButton,
+    IonAlert,
+    IonCard,
+    IonCardContent,
+    IonCardHeader,
+    IonCheckbox,
+    IonCol,
+    IonContent,
+    IonGrid,
+    IonIcon,
+    IonInput,
+    IonItem,
+    IonLabel,
+    IonList,
+    IonNote,
+    IonRow,
+    IonText,
+    CommonModule,
+    FormsModule,
+  ],
+})
+export class LoginPage {
+  email = '';
+  password = '';
+  rememberMe = false;
+  showPassword = false;
+  isSubmitting = false;
+  formSubmitted = false;
+  errorMessage = '';
+  isAlertOpen = false;
+  alertTitle = 'Login failed';
+
+  api = 'http://127.0.0.1:8000/checkCredentials';
+
+  constructor(private readonly router: Router) {}
+
+  get isEmailValid(): boolean {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.email);
+  }
+
+  get isPasswordValid(): boolean {
+    return this.password.length >= 6;
+  }
+
+ // async signIn(): Promise<void> {
+ // this.formSubmitted = true;
+ // if (!this.isEmailValid || !this.isPasswordValid || this.isSubmitting) return;
+//
+  //  this.isSubmitting = true;
+  //  
+  //  await new Promise((resolve) => setTimeout(resolve, 500));
+//await this.router.navigateByUrl('/home');
+  //  this.isSubmitting = false;
+  //}
+
+  async signIn(): Promise<void> {
+    this.formSubmitted = true;
+    this.errorMessage = '';
+    if (!this.email || !this.password) {
+      this.errorMessage = 'Enter your email and password.';
+      this.openFeedback('Missing details', this.errorMessage);
+      return;
+    }
+    if (!this.isEmailValid || !this.isPasswordValid || this.isSubmitting) return;
+    this.isSubmitting = true;
+    await new Promise((resolve) => setTimeout(resolve, 500));
+
+    try {
+      const response = await fetch(this.api, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: this.email,
+          password: this.password,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        this.errorMessage = data.detail || 'Login failed';
+        this.openFeedback('Login failed', this.errorMessage);
+        return;
+      }
+
+      if (!data.user) {
+        this.errorMessage = 'The backend returned an incomplete login response.';
+        this.openFeedback('Login failed', this.errorMessage);
+        return;
+      }
+
+      localStorage.setItem('finance-user', JSON.stringify(data.user));
+      
+      this.errorMessage = '';
+
+      //redirection
+      await this.router.navigateByUrl('/home', { replaceUrl: true });
+
+    } catch (error) {
+      console.error('Login error:', error);
+      this.errorMessage = 'Cannot connect to the backend';
+      this.openFeedback('Connection error', this.errorMessage);
+    } finally {
+      this.isSubmitting = false;
+    }
+  }
+
+  openFeedback(title: string, message: string): void {
+    this.alertTitle = title;
+    this.errorMessage = message;
+    this.isAlertOpen = true;
+  }
+}

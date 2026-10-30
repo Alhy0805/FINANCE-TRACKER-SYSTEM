@@ -5,30 +5,261 @@
       <a class="active"><span>⌂</span> Dashboard</a><a><span>☷</span> Transactions</a><a><span>↑</span> Income</a>
       <a><span>↓</span> Expenses</a><a><span>▰</span> Accounts &amp; Wallets</a><a><span>▦</span> Categories</a>
       <a><span>◎</span> Budgets</a><a><span>♟</span> Savings Goals</a><a><span>▣</span> Recurring Transactions</a>
-      <a><span>▥</span> Reports &amp; Analytics</a><a class="notification"><span>♧</span> Notifications <em>3</em></a><a><span>⚙</span> Settings</a>
+      <a><span>▥</span> Reports &amp; Analytics</a><a class="notification"><span>♧</span> Notifications <em>3</em></a
+      ><a><span>⚙</span> Settings</a>
     </nav>
-    <div class="quote">↗<br><br>“Better money habits,<br>a brighter future.”</div>
+    <div class="quote">↗<br /><br />“Better money habits,<br />a brighter future.”</div>
   </aside>
 
   <main class="main-content">
-    <header class="topbar"><div class="search">⌕ <span>Search transactions, categories, or anything...</span></div><div class="profile"><span class="bell">♧<i>3</i></span><span class="avatar">●</span> Mark Justine Ercilla <span>⌄</span></div></header>
+    <header class="topbar">
+      <div class="search">⌕ <span>Search transactions, categories, or anything...</span></div>
+      <div class="profile">
+        <span class="bell" *ngIf="accounts.length > 0; else noAccounts">♧<i>3</i></span
+        ><span class="avatar">●</span> <ion-label>{{ accounts[0].account_name }}</ion-label> <span>⌄</span>
+      </div>
+    </header>
+    <ng-template #noAccounts>
+      <p>No accounts available.</p>
+    </ng-template>
     <div class="content-grid">
       <section class="dashboard">
-        <div class="welcome"><div><h1>Good afternoon, Mark!</h1><p>Here’s your financial overview for October 2026.</p></div><button class="month">▣ &nbsp; October 2026　⌄</button></div>
+        <div class="welcome">
+          <div>
+            <h1>Good afternoon, Mark!</h1>
+            <p>Here’s your financial overview for October 2026.</p>
+          </div>
+          <button class="month">▣ &nbsp; October 2026　⌄</button>
+        </div>
         <div class="summary-cards">
-          <article class="summary blue"><span class="card-icon">▣</span><div>Total Balance<strong class="amount">₱15,000.00</strong><small>↑ 12% <i>from last month</i></small></div></article>
-          <article class="summary green"><span class="card-icon">↑</span><div>Total Income<strong class="amount">₱20,000.00</strong><small>↑ 8% <i>from last month</i></small></div></article>
-          <article class="summary red"><span class="card-icon">↓</span><div>Total Expenses<strong class="amount">₱5,000.00</strong><small>↓ 15% <i>from last month</i></small></div></article>
-          <article class="summary purple"><span class="card-icon">◎</span><div>Remaining Budget<strong class="amount">₱3,000.00</strong><small>↑ 20% <i>from last month</i></small></div></article>
+          <article class="summary blue">
+            <span class="card-icon">▣</span>
+            <div>
+              Total Balance<strong class="amount">₱15,000.00</strong><small>↑ 12% <i>from last month</i></small>
+            </div>
+          </article>
+          <article class="summary green">
+            <span class="card-icon">↑</span>
+            <div>
+              Total Income<strong class="amount">₱20,000.00</strong><small>↑ 8% <i>from last month</i></small>
+            </div>
+          </article>
+          <article class="summary red">
+            <span class="card-icon">↓</span>
+            <div>
+              Total Expenses<strong class="amount">₱5,000.00</strong><small>↓ 15% <i>from last month</i></small>
+            </div>
+          </article>
+          <article class="summary purple">
+            <span class="card-icon">◎</span>
+            <div>
+              Remaining Budget<strong class="amount">₱3,000.00</strong><small>↑ 20% <i>from last month</i></small>
+            </div>
+          </article>
         </div>
         <div class="chart-row">
-          <article class="panel income-chart"><h2>Income vs Expenses <span><b class="dot green-dot"></b>Income　 <b class="dot red-dot"></b>Expenses</span></h2><div class="graph"><div class="axis"><span>₱8,000</span><span>₱6,000</span><span>₱4,000</span><span>₱2,000</span><span>₱0</span></div><svg viewBox="0 0 560 185" preserveAspectRatio="none"><defs><linearGradient id="income" x1="0" x2="0" y1="0" y2="1"><stop stop-color="#12bd79" stop-opacity=".25"/><stop offset="1" stop-color="#12bd79" stop-opacity="0"/></linearGradient><linearGradient id="expense" x1="0" x2="0" y1="0" y2="1"><stop stop-color="#ed4564" stop-opacity=".24"/><stop offset="1" stop-color="#ed4564" stop-opacity="0"/></linearGradient></defs><path class="grid" d="M0 10H560M0 55H560M0 100H560M0 145H560"/><path fill="url(#income)" d="M0 120 C42 110,60 86,85 80 S120 55,145 69 S170 45,195 75 S225 61,250 78 S275 100,300 75 S335 55,360 67 S390 72,415 40 S450 25,475 34 S515 45,560 56 L560 185H0Z"/><path class="income-line" d="M0 120 C42 110,60 86,85 80 S120 55,145 69 S170 45,195 75 S225 61,250 78 S275 100,300 75 S335 55,360 67 S390 72,415 40 S450 25,475 34 S515 45,560 56"/><path fill="url(#expense)" d="M0 145 C45 135,72 128,96 130 S120 108,145 120 S167 94,190 105 S215 149,240 136 S268 134,290 153 S320 132,345 130 S375 143,400 126 S430 125,451 102 S480 93,505 108 S535 120,560 106 L560 185H0Z"/><path class="expense-line" d="M0 145 C45 135,72 128,96 130 S120 108,145 120 S167 94,190 105 S215 149,240 136 S268 134,290 153 S320 132,345 130 S375 143,400 126 S430 125,451 102 S480 93,505 108 S535 120,560 106"/></svg><div class="dates"><span>Oct 1</span><span>Oct 5</span><span>Oct 10</span><span>Oct 15</span><span>Oct 20</span><span>Oct 25</span><span>Oct 31</span></div></div></article>
-          <article class="panel spending"><h2>Spending by Category <a>View All</a></h2><div class="donut-area"><div class="donut"><b>₱5,000<small>Total Expenses</small></b></div><div class="legend"><p><i class="food"></i>Food <span>40%　 ₱2,000</span></p><p><i class="transport"></i>Transportation <span>20%　 ₱1,000</span></p><p><i class="shopping"></i>Shopping <span>15%　 ₱750</span></p><p><i class="bills"></i>Bills <span>10%　 ₱500</span></p><p><i class="entertainment"></i>Entertainment <span>10%　 ₱500</span></p><p><i class="others"></i>Others <span>5%　 ₱250</span></p></div></div></article>
+          <article class="panel income-chart">
+            <h2>
+              Income vs Expenses <span><b class="dot green-dot"></b>Income　 <b class="dot red-dot"></b>Expenses</span>
+            </h2>
+            <div class="graph">
+              <div class="axis">
+                <span>₱8,000</span><span>₱6,000</span><span>₱4,000</span><span>₱2,000</span><span>₱0</span>
+              </div>
+              <svg viewBox="0 0 560 185" preserveAspectRatio="none">
+                <defs>
+                  <linearGradient id="income" x1="0" x2="0" y1="0" y2="1">
+                    <stop stop-color="#12bd79" stop-opacity=".25" />
+                    <stop offset="1" stop-color="#12bd79" stop-opacity="0" />
+                  </linearGradient>
+                  <linearGradient id="expense" x1="0" x2="0" y1="0" y2="1">
+                    <stop stop-color="#ed4564" stop-opacity=".24" />
+                    <stop offset="1" stop-color="#ed4564" stop-opacity="0" />
+                  </linearGradient>
+                </defs>
+                <path class="grid" d="M0 10H560M0 55H560M0 100H560M0 145H560" />
+                <path
+                  fill="url(#income)"
+                  d="M0 120 C42 110,60 86,85 80 S120 55,145 69 S170 45,195 75 S225 61,250 78 S275 100,300 75 S335 55,360 67 S390 72,415 40 S450 25,475 34 S515 45,560 56 L560 185H0Z"
+                />
+                <path
+                  class="income-line"
+                  d="M0 120 C42 110,60 86,85 80 S120 55,145 69 S170 45,195 75 S225 61,250 78 S275 100,300 75 S335 55,360 67 S390 72,415 40 S450 25,475 34 S515 45,560 56"
+                />
+                <path
+                  fill="url(#expense)"
+                  d="M0 145 C45 135,72 128,96 130 S120 108,145 120 S167 94,190 105 S215 149,240 136 S268 134,290 153 S320 132,345 130 S375 143,400 126 S430 125,451 102 S480 93,505 108 S535 120,560 106 L560 185H0Z"
+                />
+                <path
+                  class="expense-line"
+                  d="M0 145 C45 135,72 128,96 130 S120 108,145 120 S167 94,190 105 S215 149,240 136 S268 134,290 153 S320 132,345 130 S375 143,400 126 S430 125,451 102 S480 93,505 108 S535 120,560 106"
+                />
+              </svg>
+              <div class="dates">
+                <span>Oct 1</span><span>Oct 5</span><span>Oct 10</span><span>Oct 15</span><span>Oct 20</span
+                ><span>Oct 25</span><span>Oct 31</span>
+              </div>
+            </div>
+          </article>
+          <article class="panel spending">
+            <h2>Spending by Category <a>View All</a></h2>
+            <div class="donut-area">
+              <div class="donut">
+                <b>₱5,000<small>Total Expenses</small></b>
+              </div>
+              <div class="legend">
+                <p><i class="food"></i>Food <span>40%　 ₱2,000</span></p>
+                <p><i class="transport"></i>Transportation <span>20%　 ₱1,000</span></p>
+                <p><i class="shopping"></i>Shopping <span>15%　 ₱750</span></p>
+                <p><i class="bills"></i>Bills <span>10%　 ₱500</span></p>
+                <p><i class="entertainment"></i>Entertainment <span>10%　 ₱500</span></p>
+                <p><i class="others"></i>Others <span>5%　 ₱250</span></p>
+              </div>
+            </div>
+          </article>
         </div>
-        <article class="panel transactions"><h2>Recent Transactions <a>View All</a></h2><table><thead><tr><th>Date</th><th>Description</th><th>Type</th><th>Category</th><th>Amount</th><th>Account</th><th>Actions</th></tr></thead><tbody><tr><td>Oct 28, 2026</td><td>Lunch</td><td><label class="expense">Expense</label></td><td>Food</td><td>₱150</td><td>Cash</td><td>♢　<span class="delete">♧</span></td></tr><tr><td>Oct 28, 2026</td><td>Allowance</td><td><label class="income-label">Income</label></td><td>Salary</td><td>₱500</td><td>GCash</td><td>♢　<span class="delete">♧</span></td></tr><tr><td>Oct 27, 2026</td><td>Transportation</td><td><label class="expense">Expense</label></td><td>Transport</td><td>₱50</td><td>Cash</td><td>♢　<span class="delete">♧</span></td></tr><tr><td>Oct 26, 2026</td><td>Groceries</td><td><label class="expense">Expense</label></td><td>Food</td><td>₱1,200</td><td>Bank</td><td>♢　<span class="delete">♧</span></td></tr><tr><td>Oct 25, 2026</td><td>Freelance Work</td><td><label class="income-label">Income</label></td><td>Side Hustle</td><td>₱2,000</td><td>GCash</td><td>♢　<span class="delete">♧</span></td></tr></tbody></table><footer><button>＋ Add Transaction</button><span>Showing 5 of 12 transactions</span></footer></article>
-        <div class="bottom-row"><article class="panel quick"><h2>Quick Actions</h2><div><button>＋<small>Add Transaction</small></button><button>◎<small>Set Budget</small></button><button>♟<small>Add Goal</small></button><button>▦<small>New Category</small></button></div></article><article class="panel budget"><h2>Monthly Budget <a>View All</a></h2><p>🟠 Food <span>₱3,000 / ₱5,000　 60%</span><b><i style="width:60%"></i></b></p><p>🔵 Transportation <span>₱1,500 / ₱2,000　 75%</span><b><i class="blue-bar" style="width:75%"></i></b></p><p>🟣 Entertainment <span>₱1,200 / ₱1,000　 120%</span><b><i class="pink-bar" style="width:100%"></i></b></p><p>🟢 Bills <span>₱500 / ₱2,000　 25%</span><b><i style="width:25%"></i></b></p></article><article class="panel accounts"><h2>Accounts &amp; Wallets <a>View All</a></h2><p>🟩 Cash <b>₱2,000</b></p><p>🏦 BPI Bank <b>₱8,000</b></p><p>🔵 GCash <b>₱5,000</b></p><button>＋ Add Account</button></article></div>
+        <article class="panel transactions">
+          <h2>Recent Transactions <a>View All</a></h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Type</th>
+                <th>Category</th>
+                <th>Amount</th>
+                <th>Account</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Oct 28, 2026</td>
+                <td>Lunch</td>
+                <td><label class="expense">Expense</label></td>
+                <td>Food</td>
+                <td>₱150</td>
+                <td>Cash</td>
+                <td>♢　<span class="delete">♧</span></td>
+              </tr>
+              <tr>
+                <td>Oct 28, 2026</td>
+                <td>Allowance</td>
+                <td><label class="income-label">Income</label></td>
+                <td>Salary</td>
+                <td>₱500</td>
+                <td>GCash</td>
+                <td>♢　<span class="delete">♧</span></td>
+              </tr>
+              <tr>
+                <td>Oct 27, 2026</td>
+                <td>Transportation</td>
+                <td><label class="expense">Expense</label></td>
+                <td>Transport</td>
+                <td>₱50</td>
+                <td>Cash</td>
+                <td>♢　<span class="delete">♧</span></td>
+              </tr>
+              <tr>
+                <td>Oct 26, 2026</td>
+                <td>Groceries</td>
+                <td><label class="expense">Expense</label></td>
+                <td>Food</td>
+                <td>₱1,200</td>
+                <td>Bank</td>
+                <td>♢　<span class="delete">♧</span></td>
+              </tr>
+              <tr>
+                <td>Oct 25, 2026</td>
+                <td>Freelance Work</td>
+                <td><label class="income-label">Income</label></td>
+                <td>Side Hustle</td>
+                <td>₱2,000</td>
+                <td>GCash</td>
+                <td>♢　<span class="delete">♧</span></td>
+              </tr>
+            </tbody>
+          </table>
+          <footer><button>＋ Add Transaction</button><span>Showing 5 of 12 transactions</span></footer>
+        </article>
+        <div class="bottom-row">
+          <article class="panel quick">
+            <h2>Quick Actions</h2>
+            <div>
+              <button>＋<small>Add Transaction</small></button><button>◎<small>Set Budget</small></button
+              ><button>♟<small>Add Goal</small></button><button>▦<small>New Category</small></button>
+            </div>
+          </article>
+          <article class="panel budget">
+            <h2>Monthly Budget <a>View All</a></h2>
+            <p>
+              🟠 Food <span>₱3,000 / ₱5,000　 60%</span><b><i style="width: 60%"></i></b>
+            </p>
+            <p>
+              🔵 Transportation <span>₱1,500 / ₱2,000　 75%</span><b><i class="blue-bar" style="width: 75%"></i></b>
+            </p>
+            <p>
+              🟣 Entertainment <span>₱1,200 / ₱1,000　 120%</span><b><i class="pink-bar" style="width: 100%"></i></b>
+            </p>
+            <p>
+              🟢 Bills <span>₱500 / ₱2,000　 25%</span><b><i style="width: 25%"></i></b>
+            </p>
+          </article>
+          <article class="panel accounts">
+            <h2>Accounts &amp; Wallets <a>View All</a></h2>
+            <p>🟩 Cash <b>₱2,000</b></p>
+            <p>🏦 BPI Bank <b>₱8,000</b></p>
+            <p>🔵 GCash <b>₱5,000</b></p>
+            <button>＋ Add Account</button>
+          </article>
+        </div>
       </section>
-      <aside class="rightbar"><article class="panel goals"><h2>Savings Goals <a>View All</a></h2><div class="goal">💻 <p>New Laptop <b>₱5,000 / ₱10,000　 50%</b><i><em style="width:50%"></em></i><small>Target Date: Dec 31, 2026</small></p>⋮</div><div class="goal">✈️ <p>Travel Fund <b>₱8,000 / ₱15,000　 53%</b><i><em style="width:53%"></em></i><small>Target Date: Jun 30, 2027</small></p>⋮</div></article><article class="panel side-list"><h2>Upcoming Bills &amp; Reminders <a>View All</a></h2><p>📶 <b>Internet Bill</b><span>Oct 30, 2026 <strong>₱999</strong></span></p><p>📱 <b>Mobile Load</b><span>Oct 31, 2026 <strong>₱300</strong></span></p><p>🟥 <b>Subscription (Netflix)</b><span>Nov 5, 2026 <strong>₱149</strong></span></p></article><article class="panel side-list"><h2>Recent Notifications <a>View All</a></h2><p>⚠️ <b>Your budget for Food is 80% used.</b><span>Oct 28, 2026 · 10:24 AM</span></p><p>🟢 <b>Savings goal “New Laptop” received a contribution.</b><span>Oct 27, 2026 · 6:15 PM</span></p><p>🔵 <b>Monthly report is now available.</b><span>Oct 27, 2026 · 3:00 PM</span></p></article><article class="panel stats"><h2>Quick Stats <small>This Month　⌄</small></h2><p>↑　Total Income <b>₱20,000</b></p><p>↓　Total Expenses <b>₱5,000</b></p><p>⊙　Net Cash Flow <b>₱15,000</b></p><div>▁ ▃ ▂ ▅ ▄ ▇ ▄ ▆</div></article></aside>
+      <aside class="rightbar">
+        <article class="panel goals">
+          <h2>Savings Goals <a>View All</a></h2>
+          <div class="goal">
+            💻
+            <p>
+              New Laptop <b>₱5,000 / ₱10,000　 50%</b><i><em style="width: 50%"></em></i
+              ><small>Target Date: Dec 31, 2026</small>
+            </p>
+            ⋮
+          </div>
+          <div class="goal">
+            ✈️
+            <p>
+              Travel Fund <b>₱8,000 / ₱15,000　 53%</b><i><em style="width: 53%"></em></i
+              ><small>Target Date: Jun 30, 2027</small>
+            </p>
+            ⋮
+          </div>
+        </article>
+        <article class="panel side-list">
+          <h2>Upcoming Bills &amp; Reminders <a>View All</a></h2>
+          <p>
+            📶 <b>Internet Bill</b><span>Oct 30, 2026 <strong>₱999</strong></span>
+          </p>
+          <p>
+            📱 <b>Mobile Load</b><span>Oct 31, 2026 <strong>₱300</strong></span>
+          </p>
+          <p>
+            🟥 <b>Subscription (Netflix)</b><span>Nov 5, 2026 <strong>₱149</strong></span>
+          </p>
+        </article>
+        <article class="panel side-list">
+          <h2>Recent Notifications <a>View All</a></h2>
+          <p>⚠️ <b>Your budget for Food is 80% used.</b><span>Oct 28, 2026 · 10:24 AM</span></p>
+          <p>🟢 <b>Savings goal “New Laptop” received a contribution.</b><span>Oct 27, 2026 · 6:15 PM</span></p>
+          <p>🔵 <b>Monthly report is now available.</b><span>Oct 27, 2026 · 3:00 PM</span></p>
+        </article>
+        <article class="panel stats">
+          <h2>Quick Stats <small>This Month　⌄</small></h2>
+          <p>↑　Total Income <b>₱20,000</b></p>
+          <p>↓　Total Expenses <b>₱5,000</b></p>
+          <p>⊙　Net Cash Flow <b>₱15,000</b></p>
+          <div>▁ ▃ ▂ ▅ ▄ ▇ ▄ ▆</div>
+        </article>
+      </aside>
     </div>
   </main>
 </div>
