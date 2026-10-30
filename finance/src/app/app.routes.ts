@@ -7,16 +7,18 @@ export const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'finance/overview',
+    redirectTo: 'finance/dashboard',
     pathMatch: 'full',
   },
   {
     path: 'finance',
-    loadComponent: () => import('./dashboard/dashboard.page').then((m) => m.DashboardPage),
+    loadComponent: () =>
+      import('./dashboard/financetracker.page').then((m) => m.FinanceTrackerPage),
     children: [
       {
-        path: 'overview',
-        loadComponent: () => import('./overview/overview.page').then((m) => m.OverviewPage),
+        path: 'dashboard',
+        loadComponent: () =>
+          import('./dashboard/dashboard.page').then((m) => m.DashboardPage),
       },
       {
         path: 'transactions',
