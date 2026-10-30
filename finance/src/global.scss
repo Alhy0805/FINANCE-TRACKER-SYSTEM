@@ -35,3 +35,37 @@
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 /* Dashboard uses its own light visual language. */
+:root {
+  /* Primary Colors */
+  --primary: #2563EB;
+  --primary-hover: #1D4ED8;
+  --primary-light: #DBEAFE;
+
+  /* Sidebar */
+  --sidebar-bg: #0F172A;
+  --sidebar-text: #CBD5E1;
+  --sidebar-active: #2563EB;
+
+  /* Backgrounds */
+  --background: #F8FAFC;
+  --surface: #FFFFFF;
+  --border: #E2E8F0;
+
+  /* Text */
+  --text-primary: #0F172A;
+  --text-secondary: #334155;
+  --text-muted: #64748B;
+
+  /* Financial Status */
+  --income: #16A34A;
+  --income-bg: #DCFCE7;
+
+  --expense: #DC2626;
+  --expense-bg: #FEE2E2;
+
+  --savings: #9333EA;
+  --savings-bg: #F3E8FF;
+
+  --warning: #D97706;
+  --warning-bg: #FEF3C7;
+}
